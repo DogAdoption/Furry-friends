@@ -9,6 +9,7 @@ import { BrowserRouter, Route, Routes} from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import { PreviousUrlProvider } from './contexts/PreviousUrlProvider';
 import DonateForm from './components/DonateForm';
+import DogsDataProvider from './contexts/DogsDataProvider';
 
 function App() {
   return (
@@ -16,15 +17,17 @@ function App() {
       <BrowserRouter>
           <PreviousUrlProvider>
             <AuthProvider>
-              <Header />
-              <Routes>
-                  <Route path='/' element={<Home />} />
-                  <Route path='/search' element={<SearchPage />} />
-                  <Route path='/details' element={<Details />} />
-                  <Route path='/contactform' element={<ContactForm />} />
-                  <Route path='/login' element={<Login />} />
-                  <Route path='/donate' element={<DonateForm />} />
-              </Routes>
+              <DogsDataProvider>
+                <Header />
+                <Routes>
+                    <Route path='/' element={<Home />} />
+                    <Route path='/search' element={<SearchPage />} />
+                    <Route path='/details' element={<Details />} />
+                    <Route path='/contactform' element={<ContactForm />} />
+                    <Route path='/login' element={<Login />} />
+                    <Route path='/donate' element={<DonateForm />} />
+                </Routes>
+              </DogsDataProvider>
             </AuthProvider>
           </PreviousUrlProvider>
       </BrowserRouter>

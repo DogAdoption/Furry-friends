@@ -43,9 +43,9 @@ const DonateForm = () => {
     const [name, setName] = useState('');
     const [breed, setBreed] = useState('');
     const [age, setAge] = useState('');
-    const [gender, setGender] = useState('');
+    const [gender, setGender] = useState('male');
     const [weight, setWeight] = useState(0);
-    const [location, setLocation] = useState('');
+    const [location, setLocation] = useState(indianStates[27]);
     const [story, setStory] = useState('');
     const [picture, setPicture] = useState(null);
 
@@ -98,15 +98,15 @@ const DonateForm = () => {
             <form className='contactForm'>
                 <div className="form-row">
                     <label>Name</label>
-                    <input placeholder='Dog name...' className='cardInput' type="text" name='name' value={name} onChange={(e)=> setName(e.target.value)}  required />
+                    <input placeholder='Dog name...' className='cardInput' type="text" name='name' value={name} onChange={(e)=> setName(e.target.value)} autoComplete='off'  required />
                 </div>
                 <div className="form-row">
                     <label>Breed</label>
-                    <input className='cardInput' type="text" name='breed' value={breed} onChange={(e)=> setBreed(e.target.value)}  required />
+                    <input className='cardInput' type="text" name='breed' value={breed} onChange={(e)=> setBreed(e.target.value)} autoComplete='off'  required />
                 </div>  
                 <div className="form-row">
                     <label>Age</label>
-                    <input className='cardInput' type="number" name='age' value={age} onChange={(e)=> setAge(e.target.value)}  required />
+                    <input className='cardInput' type="number" name='age' value={age} onChange={(e)=> setAge(e.target.value)} autoComplete='off'  required />
                 </div> 
                 <div className="form-row">
                     <label>Gender</label>
@@ -117,7 +117,7 @@ const DonateForm = () => {
                 </div> 
                 <div className="form-row">
                     <label>Weight(kg)</label>
-                    <input className='cardInput' type="number" name='weight' value={weight} onChange={(e)=> setWeight(e.target.value)}  required />
+                    <input className='cardInput' type="number" name='weight' value={weight} onChange={(e)=> setWeight(e.target.value)} autoComplete='off'  required />
                 </div>
                 <div className="form-row">
                     <label>Location(State)</label>
@@ -129,11 +129,11 @@ const DonateForm = () => {
                 </div> 
                 <div className="form-row">
                     <label>Picture</label>
-                    <input className='cardInput' type="file" name='picture' onChange={(e)=> setPicture(e.target.files[0])}  required />
+                    <input className='cardInput' type="file" name='picture' onChange={(e)=> setPicture(e.target.files[0])} autoComplete='off'  required />
                 </div>
                 <div className="form-row">
                     <label>Story</label>
-                    <textarea placeholder='Write something about your dog...' className='cardInput' name="message" cols="30" rows="10" value={story} onChange={(e)=> setStory(e.target.value)}  required />
+                    <textarea placeholder='Write something about your dog...' className='cardInput' name="message" cols="30" rows="10" value={story} onChange={(e)=> setStory(e.target.value)} autoComplete='off'  required />
                 </div>
                 <button type='submit' className='submitBtn' onClick={handlePost} >Post</button>
             </form>
