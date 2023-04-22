@@ -1,24 +1,34 @@
-import logo from './logo.svg';
 import './App.css';
+import ContactForm from './components/ContactForm';
+import Details from './components/Details';
+import Header from './components/Header';
+import Home from './components/Home';
+import Login from './components/Login';
+import SearchPage from './components/SearchPage';
+import { BrowserRouter, Route, Routes} from 'react-router-dom';
+import { AuthProvider } from './contexts/AuthContext';
+import { PreviousUrlProvider } from './contexts/PreviousUrlProvider';
+import DonateForm from './components/DonateForm';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <BrowserRouter>
+          <PreviousUrlProvider>
+            <AuthProvider>
+              <Header />
+              <Routes>
+                  <Route path='/' element={<Home />} />
+                  <Route path='/search' element={<SearchPage />} />
+                  <Route path='/details' element={<Details />} />
+                  <Route path='/contactform' element={<ContactForm />} />
+                  <Route path='/login' element={<Login />} />
+                  <Route path='/donate' element={<DonateForm />} />
+              </Routes>
+            </AuthProvider>
+          </PreviousUrlProvider>
+      </BrowserRouter>
+    </>
   );
 }
 

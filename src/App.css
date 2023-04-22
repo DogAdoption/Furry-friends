@@ -1,38 +1,275 @@
-.App {
+:root {
+  --themeDom : #2e9cf6;
+  --themeSub : #FFF59D;
+
+}
+
+body {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+/*Home..*/
+.home {
+  position: relative;
+}
+.home > img {
+  object-fit: cover;
+  width: 100%;
+  height: 52vh;
+}
+
+.tagLine {
+  position: absolute;
+  top: 115px;
+  left: 82px;
+  text-transform: uppercase;
+  color: white;
+  font-size: 1.5em;
+}
+
+.home .locationQuestionContainer {
+  display: flex;
+  justify-content: center;
+}
+.home .locationQuestionContainer select {
+  margin: 0.4em 1em;
+}
+
+.continueBtn {
+  margin: 0.6em auto auto;
+  display: flex;
+  padding: 0.8em 3em;
+  border: none;
+  outline: none;
+  border-radius: 27px;
+  font-size: 16px;
+  color: white;
+  background: var(--themeDom);
+  cursor: pointer;
+  transition: 1s;
+}
+
+.continueBtn:hover {
+  background-color: #257dc5;
+}
+/*...Home*/
+
+/*Details page....*/
+.detailsCard {
+  width: 70vw;
+  margin: auto;
+  padding-top: 5vh;
+}
+.detailsCard > img {
+  width: 100%;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.detailsCard .info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.detailsCard .dogDetails {
+  display: flex;
+  justify-content: space-around;
+}
+
+.detailsCard .dogDetails > div {
+  /* border: 1px solid #938a8a;
+  width: 106px;
+  padding: 11px;
+  border-radius: 12px; */
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.detailsCard .dogDetails > div > div:nth-child(2) {
+  color: rgb(128, 124, 124);
+}
+.detailsCard .contactMe {
+  display: grid;
+  grid-template-columns: 80px auto 122px;
+}
+.detailsCard .contactMe > img {
+  width: 60px;
+  height: 54px;
+  border: 3px solid white;
+  border-radius: 49%;
+  box-shadow: 1px 14px 24px 0px rgba(0,0,0,0.75);
+  color: #f2981c;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.detailsCard .contactMe button {
+  background: var(--themeDom);
+  color: white;
+  border: none;
+  border-radius: 33px;
+  font-size: 16px;
+  height: 3em;
+  width: 9em;
+  cursor: pointer;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.detailsCard .contactMe > .ownerInfo :nth-child(1) {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.detailsCard .contactMe > .ownerInfo :nth-child(2) {
+  color: grey;
+}
+
+/*....Details page*/
+
+/*Card page...*/
+
+.petCard {
+  position: relative;
+  width: fit-content;
+  padding-bottom: 1.7em;
+  border-radius: 5px;
+  margin: auto auto 23px auto;
+  text-align: center;
+  color: black;
+  background-color: white;
+  box-shadow: 0px 1px 5px -1px rgba(0,0,0,0.56);
+}
+
+.petCard > img {
+  width: 16em;
+  height: 11em;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+}
+
+.petCard > p {
+  font-size: 25px;
+  font-weight: 600;
+  color: var(--themeDom);
+  margin-bottom: 5px;
+}
+
+.petCard > .heartIcon {
+  position: absolute;
+  right: 6px;
+  top: 6px;
+  font-size: 1.6em;
+  color: var(--themeDom);
+  padding: 7.5px;
+  background: rgba(255, 255, 255, 0.866);
+  border-radius: 50%;
+}
+/*...Card page*/
+
+/*SearchPage...*/
+
+.searchContainer {
+  display: grid;
+  grid-template-columns: 17em auto;
+  padding: 2em 4em;
+  background-color: #efeef1;
+}
+
+.searchContainer > .searchGrid {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+}
+
+select {
+  padding: 1.2em 11em 1.2em 1em;
+  font-size: 15px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  box-shadow: 0px 1px 5px -1px rgba(0,0,0,0.56);
+}
+
+.filters {
+  text-align: center;
+}
+
+.filters > div > p {
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #6e6e6e;
+}
+
+.topHeader {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  background-color: white;
+  padding: 1em 4em;
+  font-size: 19px;
+  justify-content: space-between;
+}
+
+#profileDropdown {
+  font-size: 15px;
+    text-align: center;
+    padding: 10px 10px;
+    z-index: 20000;
+    width: 8rem;
+    right: 4.6rem;
+    top: 50px;
+    position: absolute;
+    border-radius: 0.25rem;
+    list-style: none;
+    background-color: white;
+    border: 1px solid rgb(195, 195, 195);
+}
+
+.topHeader .brandName {
+  color: var(--themeDom);
+  font-weight: 600;
+  padding-right: 3em;
+  cursor: pointer;
+}
+.dataInfoContainer {
+  background-color: var(--themeDom);
+  padding: 1em 5em;
+  font-size: 15px;
   color: white;
 }
-
-.App-link {
-  color: #61dafb;
+.dataInfoContainer > span {
+  padding-right: 2em;
+}
+@media screen and (max-width: 1500px) {
+  .searchContainer > .searchGrid {
+    grid-template-columns: auto auto auto;
+  }
+  .petCard > img {
+    width: 18em;
+    height: 13em;
+  }
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media screen and (max-width: 1360px) {
+  .searchContainer > .searchGrid {
+    grid-template-columns: auto auto;
   }
-  to {
-    transform: rotate(360deg);
+  .petCard > img {
+    width: 24em;
+    height: 17em;
+  }
+}
+
+@media screen and (max-width: 1230px) {
+  .searchContainer > .searchGrid {
+    grid-template-columns: auto;
+  }
+  .petCard > img {
+    width: 24em;
+    height: 17em;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .home .locationQuestionContainer {
+    flex-direction: column;
   }
 }

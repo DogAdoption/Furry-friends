@@ -1,0 +1,173 @@
+* {
+    box-sizing: border-box;
+}
+
+.form-container {
+    padding-bottom: 1rem;
+    margin: 0 4rem;
+}
+
+.form-container label {
+    text-align: left;
+    font-size: 14px;
+    font-weight: 600;
+    display: block;
+    padding: 10px 0 3px 0;
+}
+
+.form-container input {
+    width: 100%;
+    padding: 10px;
+    border: unset;
+    border-radius:3px;
+    outline-color: rgb(84 105 212 / 0.5);
+    box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+                rgba(60, 66, 87, 0.16) 0px 0px 0px 1px, 
+                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+                rgba(0, 0, 0, 0) 0px 0px 0px 0px;
+}
+
+/* .form-container form div:last-child {
+    padding-bottom: 19px
+} */
+
+.heading {
+    font-size: 23px;
+    text-align: center;
+    color: white;
+}
+
+.auth-signin-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.swich-sign-tab span span {
+    color: blue;
+    cursor: pointer;
+}
+
+/* Global */
+
+* {
+    font-family: Avenir, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+      Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji,
+      Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  }
+  
+  /* Chats Page */
+  
+  .nav-bar {
+    width: 100%;
+    height: 66px;
+    background-color: #002766;
+  }
+  
+  .logo-tab {
+    position: absolute;
+    left: 22px;
+    top: 12px;
+    font-size: 32px;
+    font-weight: 700;
+    color: white;
+  }
+  
+  .logout-tab {
+    position: absolute;
+    top: 22px;
+    right: 22px;
+    color: white;
+    cursor: pointer;
+  }
+  
+  ::-webkit-scrollbar {
+    width: 0; /* Remove scrollbar space */
+    background: transparent; /* Optional: just make scrollbar invisible */
+  }
+  
+  /* Login Page */
+  
+  #login-page {
+    width: -webkit-fill-available;
+    background-image: linear-gradient(#40a9ff, rgb(84, 105, 212));
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+  }
+  
+  #login-card {
+    position: relative;
+    margin: auto;
+    padding-top: 2vh;
+    padding-bottom: 66px;
+    width: 511px;
+    text-align: center;
+    background-color: white;
+    border-radius: 14px;
+    box-shadow: 12px 6px 28px -11px rgb(0 0 0 / 75%);
+  }
+  
+  .login-button {
+    flex-grow: 1;
+    font-size: 1.2em;
+    cursor: pointer;
+    color: #3c00ff;
+    padding: 14px;
+    border: 1px solid #9da0d2;
+    border-radius: 28px;
+    display: inline-block;
+    margin-bottom: 1rem;
+    transition: 0.5s;
+  }
+
+  .login-button:hover {
+    background-color: #3c00ff;
+    color: white;
+  }
+  
+  /* .google {
+    background-color: #dd4b39;
+    color: white;
+  }
+  
+  .google:hover {
+    background-color: #e0321c;
+  }
+   */
+  #loading-container {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background-color: rgb(255, 255, 255, 0.22);
+  }
+  
+  #loading-icon {
+    font-size: 66px;
+    position: relative;
+    left: calc(50vw - 33px);
+    top: calc(50vh - 22px);
+  }
+  
+  .error {
+    color: #e0321c;
+  }
+  
+  @media screen and (max-width: 700px){
+    #login-card {
+      width: 437px;
+    }
+  }
+  
+  @media screen and (max-width: 450px){
+    #login-card {
+      width: 341px;
+    }
+  }
