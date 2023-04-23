@@ -5,9 +5,9 @@ import './formStyles.css';
 import { useAuth } from '../contexts/AuthContext';
 
 const ContactForm = () => {
-    // const EMAILJS_SERVICE_ID = process.env.REACT_EMAILJS_SERVICE_ID;
-    // const EMAILJS_TEMPLATE_ID = process.env.REACT_EMAILJS_TEMPLATE_ID;
-    // const EMAILJS_PUBLIC_KEY = process.env.REACT_EMAILJS_PUBLIC_KEY;
+  const EMAILJS_SERVICE_ID = process.env.REACT_APP_EMAILJS_SERVICE_ID;
+  const EMAILJS_TEMPLATE_ID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
+  const EMAILJS_PUBLIC_KEY = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
 
   // const [fromName, setFromName] = useState('');
   // const [fromEmail, setFromEmail] = useState('');
@@ -35,10 +35,10 @@ const ContactForm = () => {
     };
     
     emailjs.send(
-        "service_vmtx356",
-        "template_v5uz89q",
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
         emailParams,
-        "w9se5pqEThICt6SDE"
+        EMAILJS_PUBLIC_KEY
     ).then(
         result => {
           alert('Thanks for contacting!');
@@ -56,23 +56,13 @@ const ContactForm = () => {
     <div className='contactPage' ref={container}>
         <h2>Send a message to the donor!</h2>
         <form className='contactForm'>
-            {/* <div className="form-row">
-                <label>Name</label>
-                <input className='cardInput' type="text" name='fromName' value={fromName} onChange={(e) => setFromName(e.target.value)} required />
-            </div>  
-            <div className="form-row">
-                <label>Email</label>
-                <input className='cardInput' type="email" name='fromEmail' value={fromEmail} onChange={(e) => setFromEmail(e.target.value)} required />
-            </div> */}
             <div className="form-row">
                 <textarea className='cardInput' name="message" cols="30" rows="10" value={message} onChange={(e) => setMessage(e.target.value)} required />
             </div>
-            <button
-                type="submit"
-                onClick={sendEmail}
-            >
-                Send
-            </button>
+            <div className='btns'>
+              <button type="submit" onClick={sendEmail} className='blueBtn' >Send</button>
+              <button type="submit" onClick={() => navigate(-1)} className='redBtn' >Cancel</button>
+            </div>
         </form>
     </div>
   )

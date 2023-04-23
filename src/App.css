@@ -1,6 +1,9 @@
 :root {
   --themeDom : #2e9cf6;
+  --darkBlue : #257dc5;
   --themeSub : #FFF59D;
+  --red : #e93434;
+  --darkRed : #c92c2c;
 
 }
 
@@ -10,6 +13,22 @@ body {
 
 a {
   text-decoration: none;
+}
+
+.redBtn {
+  background-color: var(--red);
+}
+
+.redBtn:hover {
+  background-color: var(--darkRed);
+}
+
+.blueBtn {
+  background-color: var(--themeDom);
+}
+
+.blueBtn:hover {
+  background-color: var(--darkBlue);
 }
 
 /*Home..*/
@@ -105,7 +124,6 @@ a {
 }
 
 .detailsCard .contactMe button {
-  background: var(--themeDom);
   color: white;
   border: none;
   border-radius: 33px;
@@ -113,6 +131,19 @@ a {
   height: 3em;
   width: 9em;
   cursor: pointer;
+}
+
+button[type='submit'], .submitBtn {
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 10px 16px;
+  transition: background-color 0.3s ease;
+  margin: 15px 10px 0 0;
+  font-family: sans-serif;
 }
 
 .detailsCard .contactMe > .ownerInfo :nth-child(1) {
@@ -181,7 +212,8 @@ a {
 }
 
 select {
-  padding: 1.2em 11em 1.2em 1em;
+  width: 14em;
+  padding: 1.2em 1em;
   font-size: 15px;
   border-radius: 8px;
   border: none;

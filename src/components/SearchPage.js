@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import PetCard from './PetCard'
 import Filter from './Filter'
 import { useLocation } from 'react-router-dom';
@@ -8,19 +8,37 @@ const SearchPage = () => {
   const location = useLocation();
   const state = location.state ? location.state.location : 'West Bengal';
 
+  const [breed, setBreed] = useState('any');
+
+  const [gender, setGender] = useState('any');
+
   const { dogs } = useDogs();
 
   const getDogs = () => {
-    return dogs.filter(data => data.location === state)
+    return dogs.filter(
+      data => 
+        (data.location === state) && 
+        (breed === 'any' && gender === 'any') ? 
+        true :
+        (breed !== 'any' && gender !== 'any') ?
+        (data.breed === breed && data.gender === gender) :
+        (breed !== 'any') ? (data.breed === breed) : (data.gender === gender)
+    )
   }
+
+  const [dogsData, setDogsData] = useState(getDogs())
+
+  useEffect(() => {
+    setDogsData(getDogs())
+  }, [dogs, breed, gender])
 
   return (
     <div className='searchContainer'>
-      <Filter />
+      <Filter dogs={dogs} brred={breed} setBreed = {setBreed} gender={gender} setGender={setGender} />
       <div className="searchGrid">
         {
-            getDogs().map(dog => ( 
-                <PetCard key={dog.id} petName={dog.name} breed={dog.breed} avatar = {dog.pictureUrl} />
+            dogsData.map(dog => ( 
+                <PetCard dog={dog} key={dog.id} />
             ))
         }
       </div>

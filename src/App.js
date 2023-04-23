@@ -10,28 +10,31 @@ import { AuthProvider } from './contexts/AuthContext';
 import { PreviousUrlProvider } from './contexts/PreviousUrlProvider';
 import DonateForm from './components/DonateForm';
 import DogsDataProvider from './contexts/DogsDataProvider';
+import UsersDataProvider from './contexts/UsersDataProvider';
 
 function App() {
   return (
-    <>
+    <div style={{overflowY: 'auto'}}>
       <BrowserRouter>
           <PreviousUrlProvider>
             <AuthProvider>
-              <DogsDataProvider>
-                <Header />
-                <Routes>
-                    <Route path='/' element={<Home />} />
-                    <Route path='/search' element={<SearchPage />} />
-                    <Route path='/details' element={<Details />} />
-                    <Route path='/contactform' element={<ContactForm />} />
-                    <Route path='/login' element={<Login />} />
-                    <Route path='/donate' element={<DonateForm />} />
-                </Routes>
-              </DogsDataProvider>
+              <UsersDataProvider>
+                <DogsDataProvider>
+                  <Header />
+                  <Routes>
+                      <Route path='/' element={<Home />} />
+                      <Route path='/search' element={<SearchPage />} />
+                      <Route path='/details' element={<Details />} />
+                      <Route path='/contactform' element={<ContactForm />} />
+                      <Route path='/login' element={<Login />} />
+                      <Route path='/donate' element={<DonateForm />} />
+                  </Routes>
+                </DogsDataProvider>
+              </UsersDataProvider>
             </AuthProvider>
           </PreviousUrlProvider>
       </BrowserRouter>
-    </>
+    </div>
   );
 }
 

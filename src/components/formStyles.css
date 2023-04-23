@@ -10,7 +10,10 @@
     width: 29em;
     margin: auto;
   }
-
+  .contactPage .btns {
+    display: flex;
+    justify-content: flex-end;
+  }
   .form-row {
     margin-bottom: 10px;
   }
@@ -38,21 +41,6 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     background-color: white !important;
-    font-family: sans-serif;
-  }
-  
-  button[type='submit'], .submitBtn {
-    background-color: #1c64f2;
-    border: none;
-    border-radius: 4px;
-    color: #fff;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: 600;
-    padding: 10px 16px;
-    transition: background-color 0.3s ease;
-    margin-top: 15px;
-    width: 100%;
     font-family: sans-serif;
   }
   

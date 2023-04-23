@@ -135,7 +135,7 @@ const DonateForm = () => {
                     <label>Story</label>
                     <textarea placeholder='Write something about your dog...' className='cardInput' name="message" cols="30" rows="10" value={story} onChange={(e)=> setStory(e.target.value)} autoComplete='off'  required />
                 </div>
-                <button type='submit' className='submitBtn' onClick={handlePost} >Post</button>
+                <button type='submit' className='submitBtn blueBtn' onClick={handlePost} style={{width: '100%'}}>Post</button>
             </form>
         </div>
     )
