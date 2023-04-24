@@ -10,6 +10,10 @@ const ContactForm = () => {
   const EMAILJS_TEMPLATE_OWNER_ID = process.env.REACT_APP_EMAILJS_TEMPLATE_OWNER_ID;
   const EMAILJS_TEMPLATE_ADOPTER_ID = process.env.REACT_APP_EMAILJS_TEMPLATE_ADOPTER_ID;
   const EMAILJS_PUBLIC_KEY = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
+  console.log(EMAILJS_SERVICE_ID)
+  console.log(EMAILJS_TEMPLATE_OWNER_ID)
+  console.log(EMAILJS_TEMPLATE_ADOPTER_ID)
+  console.log(EMAILJS_PUBLIC_KEY)
 
   const [message, setMessage] = useState('');
 

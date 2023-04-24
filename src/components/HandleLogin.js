@@ -10,7 +10,6 @@ const HandleLogin = () => {
     let userPic = null;
     if(user) {
         userPic = user.photoURL;
-        console.log(userPic);
     }
 
     const navigate = useNavigate();
@@ -27,7 +26,7 @@ const HandleLogin = () => {
     const handleLogout = () => {
         const auth = getAuth();
         signOut(auth).then(() => {
-            alert('You have successfully logged out')
+            alert('You have successfully logged out');
         }).catch((error) => {
             console.log(error);
         });

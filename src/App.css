@@ -4,7 +4,7 @@
   --themeSub : #FFF59D;
   --red : #e93434;
   --darkRed : #c92c2c;
-
+  --edit : #f2981c;
 }
 
 body {
@@ -30,6 +30,19 @@ a {
 .blueBtn:hover {
   background-color: var(--darkBlue);
 }
+
+.editBtn {
+  color: var(--edit);
+}
+
+.editBtn:hover,.deleteBtn:hover {
+  scale: 1.2;
+}
+
+.deleteBtn {
+  color: var(--red);
+}
+
 
 /*Home..*/
 .home {
@@ -81,7 +94,7 @@ a {
 .detailsCard {
   width: 70vw;
   margin: auto;
-  padding-top: 5vh;
+  padding-top: 2vh;
 }
 .detailsCard > img {
   width: 100%;
@@ -133,6 +146,13 @@ a {
   cursor: pointer;
 }
 
+.backIcon {
+  font-size: 18px;
+  color: #878787;
+  cursor: pointer;
+  margin: 1em 0 0 2em;
+}
+
 button[type='submit'], .submitBtn {
   border: none;
   border-radius: 4px;
@@ -158,6 +178,18 @@ button[type='submit'], .submitBtn {
 /*....Details page*/
 
 /*Card page...*/
+
+.petCardContainer {
+  position: relative;
+}
+
+.petCardContainer .editBtns {
+  position: absolute;
+  bottom: 32px;
+  right: 21px;
+  font-size: 17px;
+  cursor: pointer;
+}
 
 .petCard {
   position: relative;
@@ -270,6 +302,76 @@ select {
 .dataInfoContainer > span {
   padding-right: 2em;
 }
+
+
+/* pet form.... */
+.dropzone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  border: 2px dashed gray;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.image-wrapper {
+  height: 200px;
+}
+
+.dropzone.hovering .image-preview {
+  filter: blur(5px);
+}
+
+.dropzone .image-preview {
+  max-width: 100%;
+  max-height: 100%;
+  transition: filter 0.3s ease-in-out;
+}
+
+.dropzone .edit-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  color: white;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.dropzone:hover .edit-icon {
+  opacity: 1;
+}
+
+.dropzone .edit-icon:hover {
+  cursor: pointer;
+}
+
+/* .dropzone p {
+  text-align: center;
+}
+
+.dropzone img {
+  max-width: 100%;
+  max-height: 100%;
+} */
+
+/* .editPicture svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: grey;
+  scale: 1.5;
+}
+
+.dropzone:hovering svg {
+  filter: blur(1px);
+} */
+/* ....pet form */
+
+
 @media screen and (max-width: 1500px) {
   .searchContainer > .searchGrid {
     grid-template-columns: auto auto auto;

@@ -11,6 +11,7 @@ import { PreviousUrlProvider } from './contexts/PreviousUrlProvider';
 import DonateForm from './components/DonateForm';
 import DogsDataProvider from './contexts/DogsDataProvider';
 import UsersDataProvider from './contexts/UsersDataProvider';
+import PetEdit from './components/PetEdit';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
                       <Route path='/contactform' element={<ContactForm />} />
                       <Route path='/login' element={<Login />} />
                       <Route path='/donate' element={<DonateForm />} />
+                      <Route path='/edit' element={<PetEdit />} />
                   </Routes>
                 </DogsDataProvider>
               </UsersDataProvider>
