@@ -25,7 +25,8 @@ const Details = () => {
         if(user) {
             navigate("/contactform", {
                 state: {
-                    to_email: owner.email
+                    owner: owner,
+                    dog: dog
                 }
             });
         } else {

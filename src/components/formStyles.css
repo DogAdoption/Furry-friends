@@ -44,9 +44,9 @@
     font-family: sans-serif;
   }
   
-  button[type='submit']:hover {
+  /* button[type='submit']:hover {
     background-color: #0a3ba3;
-  }
+  } */
   
   button[type='submit']:disabled {
     background-color: #ccc;

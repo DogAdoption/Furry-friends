@@ -3,14 +3,14 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import emailjs from "emailjs-com";
 import './formStyles.css';
 import { useAuth } from '../contexts/AuthContext';
+import uuid from 'uuid-random';
 
 const ContactForm = () => {
   const EMAILJS_SERVICE_ID = process.env.REACT_APP_EMAILJS_SERVICE_ID;
-  const EMAILJS_TEMPLATE_ID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
+  const EMAILJS_TEMPLATE_OWNER_ID = process.env.REACT_APP_EMAILJS_TEMPLATE_OWNER_ID;
+  const EMAILJS_TEMPLATE_ADOPTER_ID = process.env.REACT_APP_EMAILJS_TEMPLATE_ADOPTER_ID;
   const EMAILJS_PUBLIC_KEY = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
 
-  // const [fromName, setFromName] = useState('');
-  // const [fromEmail, setFromEmail] = useState('');
   const [message, setMessage] = useState('');
 
   const container = useRef();
@@ -18,43 +18,62 @@ const ContactForm = () => {
   const navigate = useNavigate();
 
   const location = useLocation();
-  const to_email = location.state ? location.state.to_email : null;
+  const owner = location.state ? location.state.owner : null;
+  const dog = location.state ? location.state.dog : null;
 
   const { user } = useAuth();
 
   const sendEmail = (event) => {
+    const chatroom_id = dog.id + uuid();
     //email to the donor from adopter
     event.preventDefault();
-    const emailParams = {
-      from_email: user.email,
-      to_email: to_email,
+    const emailToOwnerParams = {
+      to_email: owner.email,
       from_name: user.displayName,
-      to_name: 'Owner_name',
-      message: message
-      
+      to_name: owner.name,
+      message: message,
+      dog_id: dog.id,
+      room_Id: chatroom_id
+    };
+
+    const emailToUserParams = {
+      to_email: user.email,
+      to_name: user.displayName,
+      room_Id: chatroom_id,
+      dog_id: dog.id
     };
     
     emailjs.send(
         EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        emailParams,
+        EMAILJS_TEMPLATE_OWNER_ID,
+        emailToOwnerParams,
         EMAILJS_PUBLIC_KEY
     ).then(
         result => {
-          alert('Thanks for contacting!');
-          navigate('/');
+          emailjs.send(
+            EMAILJS_SERVICE_ID,
+            EMAILJS_TEMPLATE_ADOPTER_ID,
+            emailToUserParams,
+            EMAILJS_PUBLIC_KEY
+          ).then(
+            res => {
+              alert('Thanks for contacting! Check your mail with the chat room id');
+              navigate('/');
+            },
+            err => console.log(err.text)
+          )
         },
         error => console.log(error.text)
     );
   }
 
-  if(!user || !to_email) {
+  if(!user || !owner) {
     return <p>You cannot view the page...</p>
   }
 
   return (
     <div className='contactPage' ref={container}>
-        <h2>Send a message to the donor!</h2>
+        <h2>Send a message to the pet owner!</h2>
         <form className='contactForm'>
             <div className="form-row">
                 <textarea className='cardInput' name="message" cols="30" rows="10" value={message} onChange={(e) => setMessage(e.target.value)} required />

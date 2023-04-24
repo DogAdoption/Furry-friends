@@ -10,6 +10,7 @@ const HandleLogin = () => {
     let userPic = null;
     if(user) {
         userPic = user.photoURL;
+        console.log(userPic);
     }
 
     const navigate = useNavigate();
@@ -41,7 +42,7 @@ const HandleLogin = () => {
                 </span> : 
                 <>
                     <span style={{paddingLeft: '3em', cursor: 'pointer'}} onClick={()=> setProfileDropdownOpen(!profileDropdownOpen)}>
-                        <img src={userPic} alt={user.displayName} width="40" height="40" style={{borderRadius: '50%'}} />
+                        <img src={userPic} alt={user.displayName.charAt(0)} width="40" height="40" style={{borderRadius: '50%'}} />
                     </span>
                     {
                         profileDropdownOpen &&
