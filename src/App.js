@@ -12,31 +12,35 @@ import DonateForm from './components/DonateForm';
 import DogsDataProvider from './contexts/DogsDataProvider';
 import UsersDataProvider from './contexts/UsersDataProvider';
 import PetEdit from './components/PetEdit';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
-    <div style={{overflowY: 'auto'}}>
-      <BrowserRouter>
-          <PreviousUrlProvider>
-            <AuthProvider>
-              <UsersDataProvider>
-                <DogsDataProvider>
-                  <Header />
-                  <Routes>
-                      <Route path='/' element={<Home />} />
-                      <Route path='/search' element={<SearchPage />} />
-                      <Route path='/details' element={<Details />} />
-                      <Route path='/contactform' element={<ContactForm />} />
-                      <Route path='/login' element={<Login />} />
-                      <Route path='/donate' element={<DonateForm />} />
-                      <Route path='/edit' element={<PetEdit />} />
-                  </Routes>
-                </DogsDataProvider>
-              </UsersDataProvider>
-            </AuthProvider>
-          </PreviousUrlProvider>
-      </BrowserRouter>
-    </div>
+    <>
+      <div style={{overflowY: 'auto'}} className='mainContainer'>
+        <BrowserRouter>
+            <PreviousUrlProvider>
+              <AuthProvider>
+                <UsersDataProvider>
+                  <DogsDataProvider>
+                    <Header />
+                    <Routes>
+                        <Route path='/' element={<Home />} />
+                        <Route path='/search' element={<SearchPage />} />
+                        <Route path='/details' element={<Details />} />
+                        <Route path='/contactform' element={<ContactForm />} />
+                        <Route path='/login' element={<Login />} />
+                        <Route path='/donate' element={<DonateForm />} />
+                        <Route path='/edit' element={<PetEdit />} />
+                    </Routes>
+                  </DogsDataProvider>
+                </UsersDataProvider>
+              </AuthProvider>
+            </PreviousUrlProvider>
+        </BrowserRouter>
+      </div>
+      <ToastContainer position='top-left' />
+    </>
   );
 }
 

@@ -3,10 +3,43 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faTrashCan, faEdit } from '@fortawesome/free-regular-svg-icons';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import { db } from '../firebase-config';
+import { doc, deleteDoc } from "firebase/firestore";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import CustomToastBtn from './CustomToastBtn';
 
 const PetCard = ({dog}) => {
+    
     const {user} = useAuth();
     const navigate = useNavigate();
+
+    const handleToast = (toastFun, message) => {
+        document.querySelector('.mainContainer').style.pointerEvents = "none"
+    
+        toastFun(message, {
+            closeButton: <CustomToastBtn />,
+            autoClose: false,
+        });
+    }
+
+    const handleDelete = async () => {
+
+        const dogDocumentRef = doc(db, 'dogs', dog.id);
+
+        await deleteDoc(dogDocumentRef)
+            .then(() => {
+                handleToast(toast.success,'Dog data deleted successfully!');
+            })
+            .catch((err) => {
+                handleToast(toast.error, err);
+            })
+    }
+
+    const confirmDelete = () => {
+        handleToast(toast.info, `Are you sure you want to delete this dog's information?`);
+    }
+    
     return (
         <div className='petCardContainer'>
             <Link to='/details' state={{
@@ -27,7 +60,7 @@ const PetCard = ({dog}) => {
                         state: {
                             dog: dog
                         }
-                    })} className='editBtn' icon={faEdit} /> <FontAwesomeIcon className='deleteBtn' icon={faTrashCan} />
+                    })} className='editBtn' icon={faEdit} /> <FontAwesomeIcon onClick={handleDelete} className='deleteBtn' icon={faTrashCan} />
                 </div>
             }
         </div>

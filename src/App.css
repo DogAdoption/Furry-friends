@@ -7,6 +7,18 @@
   --edit : #f2981c;
 }
 
+.closeToastBtn {
+  cursor: pointer;
+  background-color: var(--themeDom);
+  color: white;
+  border: none;
+  width: 41px;
+  height: 34px;
+  margin: auto;
+  border-radius: 4px;
+  pointer-events: auto;
+}
+
 body {
   margin: 0;
 }
@@ -181,6 +193,7 @@ button[type='submit'], .submitBtn {
 
 .petCardContainer {
   position: relative;
+  width: fit-content;
 }
 
 .petCardContainer .editBtns {

@@ -4,7 +4,7 @@ import uuid from 'uuid-random';
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
-import { collection, doc, setDoc } from 'firebase/firestore';
+import { doc, setDoc } from 'firebase/firestore';
 import { storage, db } from '../firebase-config';
 
 const PetEdit = () => {
@@ -35,6 +35,19 @@ const PetEdit = () => {
 
     const navigate = useNavigate();
 
+    const addDog = async (data) => {
+        const dogDocumentRef = doc(db, "dogs", dog.id);
+
+        await setDoc(dogDocumentRef, data)
+            .then(() => {
+                alert('Updated successfully!');
+                navigate('/search');
+            })
+            .catch((error) => {
+                alert('Error writing document: ', error);
+            });
+    }
+
     const handleUpdate = async (e) => {
         e.preventDefault();
         const data = {
@@ -59,35 +72,13 @@ const PetEdit = () => {
                 data.pictureUrl = downloadURL;
 
                 // Add the dog data to Firestore
-                const dogsCollectionRef = collection(db, "dogs");
-
-                const dogDocumentRef = doc(dogsCollectionRef, dog.id);
-
-                await setDoc(dogDocumentRef, data)
-                    .then(() => {
-                        alert('Updated successfully!');
-                        navigate('/search');
-                    })
-                    .catch((error) => {
-                        alert('Error writing document: ', error);
-                    });
+                addDog(data)
             }).catch((err) => {
                 console.log(err);
             })
         } else {
             // Add the dog data to Firestore
-            const dogsCollectionRef = collection(db, "dogs");
-
-            const dogDocumentRef = doc(dogsCollectionRef, dog.id);
-
-            await setDoc(dogDocumentRef, data)
-                .then(() => {
-                    alert('Updated successfully!');
-                    navigate('/search');
-                })
-                .catch((error) => {
-                    alert('Error writing document: ', error);
-                });
+            addDog(data);
         }
     }
 
