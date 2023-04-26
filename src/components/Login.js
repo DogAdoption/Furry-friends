@@ -8,6 +8,8 @@ import { db } from "../firebase-config";
 import {signInWithGoogle} from '../firebase-config';
 import { useNavigate } from 'react-router-dom';
 import { usePreviousUrl } from '../contexts/PreviousUrlProvider';
+import { customToast } from '../functions/customToast';
+import { toast } from 'react-toastify';
 
 const Login = () => {
   const {previousUrl} = usePreviousUrl();
@@ -30,16 +32,15 @@ const Login = () => {
       pictureUrl: user.photoURL
     };
     const userId = (user.uid).toString();
-    console.log(user);
     
     const userDocRef = doc(usersRef, userId);
 
     await setDoc(userDocRef, data)
       .then(() => {
-        console.log('Document successfully written!');
+        customToast(toast.success, 'Document successfully written!');
       })
       .catch((error) => {
-        console.error('Error writing document: ', error);
+        customToast(toast.error, 'Error writing document: ' + error)
       });
     navigate(previousUrl);
   }

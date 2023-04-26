@@ -323,7 +323,7 @@ select {
 .topHeader .brandName {
   color: var(--themeDom);
   font-weight: 600;
-  padding-right: 3em;
+  padding-right: 1.5em;
   cursor: pointer;
 }
 .dataInfoContainer {

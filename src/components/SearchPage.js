@@ -8,11 +8,20 @@ const SearchPage = () => {
   const location = useLocation();
   const dogLocation = location.state ? location.state.location : 'West Bengal';
 
-  const [breed, setBreed] = useState('any');
+  const [breed, setBreed] = useState(() => {
+    let breed = localStorage.getItem('filterBreed');
+    return breed ? breed : 'any';
+  });
 
-  const [gender, setGender] = useState('any');
+  const [gender, setGender] = useState(() => {
+    let gender = localStorage.getItem('filterGender');
+    return gender ? gender : 'any';
+  });
 
-  const [age, setAge] = useState('any');
+  const [age, setAge] = useState(() => {
+    let age = localStorage.getItem('filterAge');
+    return age ? age : 'any';
+  });
 
   const dogValues = {
     breed, setBreed,
@@ -20,7 +29,7 @@ const SearchPage = () => {
     age, setAge
   }
 
-  let { dogs } = useDogs();
+  let { dogs, setCurrentDogCount } = useDogs();
 
   const getFilteredDogs = () => {
     let filteredDogs = dogs.filter(dog => dog.location === dogLocation);
@@ -42,6 +51,8 @@ const SearchPage = () => {
         filteredDogs = filteredDogs.filter(dog => dog.age > 7)
       }
     }
+
+    setCurrentDogCount(filteredDogs.length);
     return filteredDogs;
   }
 

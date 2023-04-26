@@ -38,7 +38,10 @@ const Home = () => {
 
   // const distances = [10, 25, 100, 'Anywhere'];
 
-  const [state, setState] = useState(indianStates[27]);
+  const [state, setState] = useState(() => {
+    let location = localStorage.getItem('currentLocation');
+    return location ? location : indianStates[27];
+  });
   // const [distance, setDistance] = useState(100);
   const [adopt, setAdopt] = useState(false);
 
@@ -51,6 +54,12 @@ const Home = () => {
     } else {
       customToast(toast.error, 'Please log in');
     }
+  }
+
+  const handleLocationChange = (e) => {
+    let currentLocation = e.target.value;
+    setState(currentLocation);
+    localStorage.setItem('currentLocation', currentLocation);
   }
   
   return (
@@ -71,7 +80,7 @@ const Home = () => {
         <div className='getLocation'>
           <h2 >Where would you like to search?</h2>
           <span className='locationQuestionContainer'>
-            <select value={state} onChange={(e) => setState(e.target.value)}>
+            <select value={state} onChange={handleLocationChange}>
               {
                 indianStates.map(state => <option key={state} value={state}>{state}</option>)
               }

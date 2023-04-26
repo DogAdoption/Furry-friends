@@ -1,10 +1,19 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart, faDog } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faDog, faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import HandleLogin from './HandleLogin';
+import { useDogs } from '../contexts/DogsDataProvider';
 
-const Header = ({count, maxDistance, location}) => {
+const Header = () => {
+
+    const {currentDogCount} = useDogs();
+
+    const getCurrentLocation = () => {
+        let location =  localStorage.getItem("currentLocation");
+        if(location) return location;
+        return 'West Bengal';
+    }
 
     return (
         <div className='headerContainer'>
@@ -24,9 +33,10 @@ const Header = ({count, maxDistance, location}) => {
                 </div>
             </div>
             <div className='dataInfoContainer'>
-                <span>{63} dogs</span>
-                <span>{100} miles</span>
-                <span>near {'Piti Municipality, Guam'}</span>
+                <span>{currentDogCount} dogs</span>
+                <span>
+                    <FontAwesomeIcon icon={faLocationDot} /> {getCurrentLocation()}
+                </span>
             </div>
         </div>
     )
