@@ -4,6 +4,8 @@ import emailjs from "emailjs-com";
 import './formStyles.css';
 import { useAuth } from '../contexts/AuthContext';
 import uuid from 'uuid-random';
+import { customToast } from '../functions/customToast';
+import { toast } from 'react-toastify';
 
 const ContactForm = () => {
   const EMAILJS_SERVICE_ID = process.env.REACT_APP_EMAILJS_SERVICE_ID;
@@ -60,14 +62,14 @@ const ContactForm = () => {
             emailToUserParams,
             EMAILJS_PUBLIC_KEY
           ).then(
-            res => {
-              alert('Thanks for contacting! Check your mail with the chat room id');
+            async res => {
+              customToast(toast.info, 'Thanks for contacting! Check your mail with the chat room id')
               navigate('/');
             },
-            err => console.log(err.text)
+            err => customToast(toast.error, err.text)
           )
         },
-        error => console.log(error.text)
+        error => customToast(toast.error, error.text)
     );
   }
 

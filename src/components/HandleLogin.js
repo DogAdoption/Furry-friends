@@ -3,6 +3,8 @@ import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { usePreviousUrl } from '../contexts/PreviousUrlProvider';
 import { getAuth, signOut } from 'firebase/auth';
+import { customToast } from '../functions/customToast';
+import { toast } from 'react-toastify';
 
 const HandleLogin = () => {
     const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
@@ -26,9 +28,9 @@ const HandleLogin = () => {
     const handleLogout = () => {
         const auth = getAuth();
         signOut(auth).then(() => {
-            alert('You have successfully logged out');
+            customToast(toast.success, 'You have successfully logged out');
         }).catch((error) => {
-            console.log(error);
+            customToast(toast.error, error);
         });
 
     }

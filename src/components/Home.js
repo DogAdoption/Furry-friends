@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import { customToast } from '../functions/customToast';
+import { toast } from 'react-toastify';
 
 const Home = () => {
   const indianStates = [
@@ -34,10 +36,10 @@ const Home = () => {
     "West Bengal"
   ];
 
-  const distances = [10, 25, 100, 'Anywhere'];
+  // const distances = [10, 25, 100, 'Anywhere'];
 
   const [state, setState] = useState(indianStates[27]);
-  const [distance, setDistance] = useState(100);
+  // const [distance, setDistance] = useState(100);
   const [adopt, setAdopt] = useState(false);
 
   const { user } = useAuth();
@@ -47,7 +49,7 @@ const Home = () => {
     if(user) {
       navigate('/donate');
     } else {
-      alert('Please log in');
+      customToast(toast.error, 'Please log in');
     }
   }
   
@@ -58,38 +60,38 @@ const Home = () => {
         <h1>Adopt. <br />don't shop.</h1>
       </div>
 
-      <div style={{textAlign: 'center'}}>
+      <div className='purposeBtns'>
         <h2>Are you here to donate or adopt ?</h2>
-        <button style={{display: 'inline', marginRight: '5px', borderRadius: 0}} className='continueBtn' onClick={()=>setAdopt(true)}>ADOPT</button>
-        <button onClick={handleDonate} style={{display: 'inline', borderRadius: 0}} className='continueBtn'>DONATE</button>
+        <button style={{marginRight: '5px'}} className='continueBtn' onClick={()=>setAdopt(true)}>ADOPT</button>
+        <button onClick={handleDonate} className='continueBtn'>DONATE</button>
       </div>
 
       {
         adopt &&
-        <>
-          <h2 style={{textAlign: 'center'}}>Where would you like to search?</h2>
-          <div className='locationQuestionContainer'>
+        <div className='getLocation'>
+          <h2 >Where would you like to search?</h2>
+          <span className='locationQuestionContainer'>
             <select value={state} onChange={(e) => setState(e.target.value)}>
               {
                 indianStates.map(state => <option key={state} value={state}>{state}</option>)
               }
             </select>
 
-            <select value={distance} onChange={(e) => setDistance(e.target.value)}>
+            {/* <select value={distance} onChange={(e) => setDistance(e.target.value)}>
               {
                 distances.map(dis => (
                   dis.toString() === 'Anywhere' ? <option key={dis} value={dis}>{dis}</option> :
                   <option key={dis} value={dis}>Within {dis} miles</option>
                 ))
               }
-            </select>
-          </div>
+            </select> */}
+          </span>
           <Link to='/search' state={{
             location: state
           }}>
             <button className='continueBtn'>Continue</button>
           </Link>
-        </>
+        </div>
       }
     </div>
   )

@@ -6,6 +6,8 @@ import { useAuth } from '../contexts/AuthContext';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { doc, setDoc } from 'firebase/firestore';
 import { storage, db } from '../firebase-config';
+import { customToast } from '../functions/customToast';
+import { toast } from 'react-toastify';
 
 const PetEdit = () => {
     const loc = useLocation();
@@ -40,11 +42,11 @@ const PetEdit = () => {
 
         await setDoc(dogDocumentRef, data)
             .then(() => {
-                alert('Updated successfully!');
+                customToast(toast.success, 'Updated successfully!')
                 navigate('/search');
             })
             .catch((error) => {
-                alert('Error writing document: ', error);
+                customToast(toast.error, error);
             });
     }
 

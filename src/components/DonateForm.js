@@ -7,6 +7,8 @@ import { useAuth } from '../contexts/AuthContext';
 import { collection, addDoc } from "firebase/firestore"
 import { useNavigate } from 'react-router-dom';
 import PetForm from './PetForm';
+import { customToast } from '../functions/customToast';
+import { toast } from 'react-toastify';
 
 const DonateForm = () => {
     const [name, setName] = useState('');
@@ -56,15 +58,15 @@ const DonateForm = () => {
                 // Add the dog data to Firestore
                 const dogsCollectionRef = collection(db, "dogs");
                 await addDoc(dogsCollectionRef, data)
-                    .then(() => {
-                        alert('Posted successfully!');
+                    .then(async () => {
+                        customToast(toast.success, 'Posted successfully!');
+                        navigate('/');
                     })
                     .catch((error) => {
-                        alert('Error writing document: ', error);
+                        customToast(toast.error, 'Error writing document: '+ error);
                     });
-                navigate('/');
             }).catch((err) => {
-                console.log(err);
+                customToast(toast.error, err);
             })
     }
 

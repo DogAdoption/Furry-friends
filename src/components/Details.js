@@ -4,6 +4,8 @@ import { faHeart, faLocationDot, faArrowLeftLong } from '@fortawesome/free-solid
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useUsers } from '../contexts/UsersDataProvider';
+import { customToast } from '../functions/customToast';
+import { toast } from 'react-toastify';
 
 const Details = () => {
     const location = useLocation();
@@ -30,7 +32,7 @@ const Details = () => {
                 }
             });
         } else {
-            alert('Please login');
+            customToast(toast.error, 'Please login');
         }
     }
     

@@ -12,11 +12,16 @@
   background-color: var(--themeDom);
   color: white;
   border: none;
-  width: 41px;
+  width: 60px;
   height: 34px;
   margin: auto;
   border-radius: 4px;
   pointer-events: auto;
+}
+
+.Toastify__toast {
+  flex-direction: column !important;
+  text-align: center !important;
 }
 
 body {
@@ -76,11 +81,26 @@ a {
 }
 
 .home .locationQuestionContainer {
-  display: flex;
+  display: inline-flex;
   justify-content: center;
 }
 .home .locationQuestionContainer select {
   margin: 0.4em 1em;
+}
+
+.purposeBtns, .getLocation {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.purposeBtns > h2, .getLocation > h2 {
+  display: inline;
+  margin-right: 5vw;
+}
+
+.purposeBtns > button.continueBtn {
+  display: inline;
+  border-radius: 0;
 }
 
 .continueBtn {
@@ -92,7 +112,7 @@ a {
   border-radius: 27px;
   font-size: 16px;
   color: white;
-  background: var(--themeDom);
+  background: black;
   cursor: pointer;
   transition: 1s;
 }
@@ -418,5 +438,11 @@ select {
 @media screen and (max-width: 700px) {
   .home .locationQuestionContainer {
     flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 765px) {
+  .purposeBtns h2 {
+    display: block;
   }
 }
