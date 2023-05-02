@@ -10,8 +10,7 @@
 
 .mainContainer {
   height: 100vh;
-  /* background: var(--themeSub); */
-  background: green;
+  background: var(--themeSub);
 }
 
 .closeToastBtn {

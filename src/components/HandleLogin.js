@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useAuth } from '../contexts/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { usePreviousUrl } from '../contexts/PreviousUrlProvider';
 import { getAuth, signOut } from 'firebase/auth';
 import { customToast } from '../functions/customToast';
@@ -16,12 +16,13 @@ const HandleLogin = () => {
 
     const navigate = useNavigate();
 
+    const location = useLocation();
+
     const {setPreviousUrl} = usePreviousUrl();
     const handleLogin = () => {
         setProfileDropdownOpen(false);
         if(user) return;
-        const locationUrl = window.location.href;
-        setPreviousUrl(locationUrl.substring(21).toString());
+        setPreviousUrl(location.pathname);
         navigate('/login');
     }
 
