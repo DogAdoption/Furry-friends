@@ -3,7 +3,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import emailjs from "emailjs-com";
 import './formStyles.css';
 import { useAuth } from '../contexts/AuthContext';
-import uuid from 'uuid-random';
 import { customToast } from '../functions/customToast';
 import { toast } from 'react-toastify';
 
@@ -26,7 +25,6 @@ const ContactForm = () => {
   const { user } = useAuth();
 
   const sendEmail = (event) => {
-    const chatroom_id = dog.id + uuid();
     //email to the donor from adopter
     event.preventDefault();
     const emailToOwnerParams = {
@@ -35,13 +33,11 @@ const ContactForm = () => {
       to_name: owner.name,
       message: message,
       dog_id: dog.id,
-      room_Id: chatroom_id
     };
 
     const emailToUserParams = {
       to_email: user.email,
       to_name: user.displayName,
-      room_Id: chatroom_id,
       dog_id: dog.id
     };
     
