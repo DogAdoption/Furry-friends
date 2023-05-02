@@ -1,12 +1,18 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import PetCard from './PetCard'
 import Filter from './Filter'
 import { useLocation } from 'react-router-dom';
 import { useDogs } from '../contexts/DogsDataProvider';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSliders, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 const SearchPage = () => {
   const location = useLocation();
   const dogLocation = location.state ? location.state.location : 'West Bengal';
+
+  const filterBar = useRef();
+
+  const [showFilter, setShowFilter] = useState(false);
 
   const [breed, setBreed] = useState(() => {
     let breed = localStorage.getItem('filterBreed');
@@ -56,9 +62,26 @@ const SearchPage = () => {
     return filteredDogs;
   }
 
+  const toggleFilterBar = () => {
+    if(filterBar.current.style.display === 'none' || showFilter === false) {
+        filterBar.current.style.display = 'block';
+        setShowFilter(true);
+    } else {
+        filterBar.current.style.display = 'none';
+        setShowFilter(false);
+    }
+  }
+
   return (
-    <>
-      <div className="filterTopBar">
+    <div className='searchPage'>
+      {
+        showFilter && <FontAwesomeIcon className='cross' onClick={toggleFilterBar} icon={ faXmark} />
+      }
+      <div className='slider' onClick={toggleFilterBar}>
+        <FontAwesomeIcon icon={faSliders} /> Filters
+      </div>
+  
+      <div className="filterTopBar" ref={filterBar}>
         <Filter dogs={dogs} dog={dogValues} />
       </div>
       <div className='searchContainer'>
@@ -71,7 +94,7 @@ const SearchPage = () => {
           }
         </div>
       </div>
-    </>
+    </div>
   )
 }
 

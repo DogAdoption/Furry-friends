@@ -1,13 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDog, faLocationDot, faSliders, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faDog, faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import HandleLogin from './HandleLogin';
 import { useDogs } from '../contexts/DogsDataProvider';
 
 const Header = () => {
-
-    const [showFilter, setShowFilter] = useState(false);
 
     const {currentDogCount} = useDogs();
 
@@ -17,17 +15,6 @@ const Header = () => {
         let location =  localStorage.getItem("currentLocation");
         if(location) return location;
         return 'West Bengal';
-    }
-
-    const toggleFilterBar = () => {
-        const filterBar = document.querySelector('.filterTopBar');
-        if(filterBar.style.display === 'none' || showFilter === false) {
-            filterBar.style.display = 'block';
-            setShowFilter(true);
-        } else {
-            filterBar.style.display = 'none';
-            setShowFilter(false);
-        }
     }
 
     return ( 
@@ -54,10 +41,6 @@ const Header = () => {
                 <span>
                     <FontAwesomeIcon icon={faLocationDot} /> {getCurrentLocation()}, India
                 </span>
-                {
-                    locationUrl.includes('search') && 
-                    <FontAwesomeIcon className='slider' onClick={toggleFilterBar} icon={showFilter ? faXmark : faSliders} />
-                }
             </div>
         </div>
     )
