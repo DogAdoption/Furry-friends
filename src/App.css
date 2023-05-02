@@ -281,8 +281,6 @@ button[type='submit'], .submitBtn {
   display: grid;
   grid-template-columns: 17em auto;
   padding: 2em 4em;
-  /* background-color: #efeef1; */
-  background-color: var(--themeSub);
   height: 100vh;
 }
 
