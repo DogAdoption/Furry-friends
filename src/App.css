@@ -8,9 +8,18 @@
   --edit : #f2981c;
 }
 
+* {
+  font-family: Nexa Regular,arial,helvetica,sans-serif;
+}
+
 .mainContainer {
   height: 100vh;
   background: var(--themeSub);
+}
+
+.dot {
+  font-size: 40px;
+  margin: 5px;
 }
 
 .closeToastBtn {
@@ -260,7 +269,7 @@ button[type='submit'], .submitBtn {
   font-size: 25px;
   font-weight: 600;
   color: var(--themeDom);
-  margin-bottom: 5px;
+  margin-bottom: -17px;
 }
 
 .petCard > .heartIcon {
@@ -308,6 +317,7 @@ select {
   font-weight: 700;
   text-transform: uppercase;
   color: #6e6e6e;
+  margin: 24px 0 8px;
 }
 
 .filterTopBar {
@@ -446,6 +456,7 @@ select {
   }
   .petCard > img {
     width: 18em;
+    height: 12em;
   }
 }
 
@@ -455,6 +466,7 @@ select {
   }
   .petCard > img {
     width: 20em;
+    height: 14em;
   }
 }
 

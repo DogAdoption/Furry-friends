@@ -53,6 +53,12 @@ const PetCard = ({dog}) => {
         localStorage.setItem('currentDogOwner', JSON.stringify(getOwner()));
         navigate('/details');
     }
+
+    const getAge = (age) => {
+        if(age <= 1) return 'Young'
+        if(age <= 7) return 'Adult'
+        return 'Scenior'
+    } 
     
     return (
         <div className='petCardContainer'>
@@ -60,8 +66,7 @@ const PetCard = ({dog}) => {
                     {/* <FontAwesomeIcon icon={faHeart} className='heartIcon' /> */}
                     <img src={dog.pictureUrl} alt="dog" />
                     <p>{dog.name}</p>
-                    {dog.breed} <br />
-                    {7} miles away
+                    {getAge(dog.age)} <span class="dot">.</span> {dog.breed} <br />
                 </div>
             {
                 user && user.uid === dog.ownerId &&
