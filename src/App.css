@@ -234,6 +234,8 @@ button[type='submit'], .submitBtn {
 .petCardContainer {
   position: relative;
   width: fit-content;
+  height: fit-content;
+  margin: 0 10px;
 }
 
 .petCardContainer .editBtns {
@@ -258,9 +260,8 @@ button[type='submit'], .submitBtn {
 }
 
 .petCard > img {
-  width: 16em;
-  height: 11em;
-  /* height: fit-content; */
+  width: 20em;
+  height: 14em;
   border-top-left-radius: inherit;
   border-top-right-radius: inherit;
 }
@@ -294,8 +295,10 @@ button[type='submit'], .submitBtn {
 }
 
 .searchContainer > .searchGrid {
-  display: grid;
-  grid-template-columns: auto auto auto auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 20px;
 }
 
 select {
@@ -451,9 +454,6 @@ select {
 }
 
 @media screen and (max-width: 1500px) {
-  .searchContainer > .searchGrid {
-    grid-template-columns: auto auto auto;
-  }
   .petCard > img {
     width: 18em;
     height: 12em;
@@ -461,13 +461,18 @@ select {
 }
 
 @media screen and (max-width: 1360px) {
-  .searchContainer > .searchGrid {
-    grid-template-columns: auto auto;
-  }
   .petCard > img {
-    width: 20em;
-    height: 14em;
+    width: 18em;
+    height: 13em;
   }
+}
+
+@media screen and (max-width: 771px) {
+  .petCard > img {
+    width: 80vw;
+    height: fit-content;
+  }
+
 }
 
 @media screen and (max-width: 1100px) {
@@ -477,23 +482,8 @@ select {
   .searchContainer .filters {
     display: none;
   }
-  .searchContainer > .searchGrid {
-    grid-template-columns: auto;
-  }
-  .petCard {
-    width: 80vw;
-  }
-  .petCard > img {
-    width: 100%;
-    height: fit-content;
-  }
-  .searchContainer {
-    padding-right: 0;
-    padding-left: 0;
-  }
   .searchGrid {
-    justify-content: center;
-    width: 100vw;
+    width: 85vw
   }
 }
 
