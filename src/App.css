@@ -250,8 +250,8 @@ button[type='submit'], .submitBtn {
 
 .petCard > img {
   width: 16em;
-  /* height: 11em; */
-  height: fit-content;
+  height: 11em;
+  /* height: fit-content; */
   border-top-left-radius: inherit;
   border-top-right-radius: inherit;
 }
@@ -456,6 +456,7 @@ select {
   }
   .petCard > img {
     width: 100%;
+    height: fit-content;
   }
   .searchContainer {
     padding-right: 0;
