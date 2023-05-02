@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart, faDog, faLocationDot } from '@fortawesome/free-solid-svg-icons';
+import { faDog, faLocationDot, faSliders, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import HandleLogin from './HandleLogin';
 import { useDogs } from '../contexts/DogsDataProvider';
 
 const Header = () => {
 
+    const [showFilter, setShowFilter] = useState(false);
+
     const {currentDogCount} = useDogs();
+
+    const locationUrl = window.location.href;
 
     const getCurrentLocation = () => {
         let location =  localStorage.getItem("currentLocation");
@@ -15,7 +19,18 @@ const Header = () => {
         return 'West Bengal';
     }
 
-    return (
+    const toggleFilterBar = () => {
+        const filterBar = document.querySelector('.filterTopBar');
+        if(filterBar.style.display === 'none' || showFilter === false) {
+            filterBar.style.display = 'block';
+            setShowFilter(true);
+        } else {
+            filterBar.style.display = 'none';
+            setShowFilter(false);
+        }
+    }
+
+    return ( 
         <div className='headerContainer'>
             <div className='topHeader'>
                 <div>
@@ -28,15 +43,21 @@ const Header = () => {
                     </Link>
                 </div>
                 <div>
-                    <FontAwesomeIcon icon={faHeart} style={{fontSize: 25, position: 'absolute', top: 26}}/>
+                    {/* <FontAwesomeIcon icon={faHeart} style={{fontSize: 25, position: 'absolute', top: 26}}/> */}
                     <HandleLogin />
                 </div>
             </div>
             <div className='dataInfoContainer'>
-                <span>{currentDogCount} dogs</span>
+                {
+                    locationUrl.includes('search') && <span>{currentDogCount} dogs</span>
+                }
                 <span>
-                    <FontAwesomeIcon icon={faLocationDot} /> {getCurrentLocation()}
+                    <FontAwesomeIcon icon={faLocationDot} /> {getCurrentLocation()}, India
                 </span>
+                {
+                    locationUrl.includes('search') && 
+                    <FontAwesomeIcon className='slider' onClick={toggleFilterBar} icon={showFilter ? faXmark : faSliders} />
+                }
             </div>
         </div>
     )

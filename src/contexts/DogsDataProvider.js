@@ -22,7 +22,7 @@ const DogsDataProvider = ({ children }) => {
     }, [])
     
     return (
-        <DogsContext.Provider value={ { dogs, currentDogCount, setCurrentDogCount } }>
+        <DogsContext.Provider value={{ dogs, currentDogCount, setCurrentDogCount }}>
             {children}
         </DogsContext.Provider>
     )

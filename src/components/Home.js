@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { customToast } from '../functions/customToast';
 import { toast } from 'react-toastify';
+import dogPicture from '../images/dog.jpg'
 
 const Home = () => {
   const indianStates = [
@@ -64,7 +65,7 @@ const Home = () => {
   
   return (
     <div className='home'>
-      <img src="https://cdn.mos.cms.futurecdn.net/ASHH5bDmsp6wnK6mEfZdcU.jpg" alt="" />
+      <img src={dogPicture} alt="" />
       <div className='tagLine'>
         <h1>Adopt. <br />don't shop.</h1>
       </div>

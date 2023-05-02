@@ -57,16 +57,21 @@ const SearchPage = () => {
   }
 
   return (
-    <div className='searchContainer'>
-      <Filter dogs={dogs} dog={dogValues} />
-      <div className="searchGrid">
-        {
-            getFilteredDogs().map(dog => ( 
-                <PetCard dog={dog} key={dog.id} />
-            ))
-        }
+    <>
+      <div className="filterTopBar">
+        <Filter dogs={dogs} dog={dogValues} />
       </div>
-    </div>
+      <div className='searchContainer'>
+        <Filter dogs={dogs} dog={dogValues} />
+        <div className="searchGrid">
+          {
+              getFilteredDogs().map(dog => ( 
+                  <PetCard dog={dog} key={dog.id} />
+              ))
+          }
+        </div>
+      </div>
+    </>
   )
 }
 

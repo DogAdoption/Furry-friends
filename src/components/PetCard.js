@@ -1,7 +1,7 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart, faTrashCan, faEdit } from '@fortawesome/free-regular-svg-icons';
-import { Link, useNavigate } from 'react-router-dom';
+import { faTrashCan, faEdit } from '@fortawesome/free-regular-svg-icons';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { db, storage } from '../firebase-config';
 import { doc, deleteDoc } from "firebase/firestore";
@@ -10,6 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { customToast } from '../functions/customToast'
 import ConfirmToastBtn from './ConfirmToastBtn';
 import { ref, deleteObject } from "firebase/storage";
+import { useUsers } from '../contexts/UsersDataProvider';
 
 const PetCard = ({dog}) => {
     
@@ -42,20 +43,26 @@ const PetCard = ({dog}) => {
             autoClose: false
         })
     }
+
+    const { users } = useUsers();
+
+    const getOwner = () => users.find(u => u.id === dog.ownerId);
+
+    const showDetails = () => {
+        localStorage.setItem('currentDog', JSON.stringify(dog));
+        localStorage.setItem('currentDogOwner', JSON.stringify(getOwner()));
+        navigate('/details');
+    }
     
     return (
         <div className='petCardContainer'>
-            <Link to='/details' state={{
-                dog: dog
-            }}>
-                <div className='petCard grid-item'>
-                    <FontAwesomeIcon icon={faHeart} className='heartIcon' />
+                <div className='petCard grid-item' onClick={showDetails}>
+                    {/* <FontAwesomeIcon icon={faHeart} className='heartIcon' /> */}
                     <img src={dog.pictureUrl} alt="dog" />
                     <p>{dog.name}</p>
                     {dog.breed} <br />
                     {7} miles away
                 </div>
-            </Link>
             {
                 user && user.uid === dog.ownerId &&
                 <div className='editBtns'>

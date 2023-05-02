@@ -1,10 +1,16 @@
 :root {
-  --themeDom : #2e9cf6;
+  /* --themeDom : #2e9cf6; */
+  --themeDom : #3f93a8;
   --darkBlue : #257dc5;
-  --themeSub : #FFF59D;
+  --themeSub : #e6f7b249;
   --red : #e93434;
   --darkRed : #c92c2c;
   --edit : #f2981c;
+}
+
+.mainContainer {
+  height: 100vh;
+  background: var(--themeSub);
 }
 
 .closeToastBtn {
@@ -124,14 +130,17 @@ a {
 
 /*Details page....*/
 .detailsCard {
-  width: 70vw;
+  /* width: 70vw; */
   margin: auto;
   padding-top: 2vh;
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 2em;
 }
 .detailsCard > img {
-  width: 100%;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  width: 40vw;
+  height: fit-content;
+  border-radius: 10px;
 }
 
 .detailsCard .info {
@@ -145,10 +154,6 @@ a {
 }
 
 .detailsCard .dogDetails > div {
-  /* border: 1px solid #938a8a;
-  width: 106px;
-  padding: 11px;
-  border-radius: 12px; */
   text-align: center;
 }
 
@@ -178,11 +183,16 @@ a {
   cursor: pointer;
 }
 
+.infoContainer {
+  width: 35vw;
+}
+
 .backIcon {
   font-size: 18px;
   color: #878787;
   cursor: pointer;
   margin: 1em 0 0 2em;
+  width: fit-content;
 }
 
 button[type='submit'], .submitBtn {
@@ -205,6 +215,7 @@ button[type='submit'], .submitBtn {
 
 .detailsCard .contactMe > .ownerInfo :nth-child(2) {
   color: grey;
+  margin-right: 1em;
 }
 
 /*....Details page*/
@@ -234,11 +245,13 @@ button[type='submit'], .submitBtn {
   color: black;
   background-color: white;
   box-shadow: 0px 1px 5px -1px rgba(0,0,0,0.56);
+  cursor: pointer;
 }
 
 .petCard > img {
   width: 16em;
-  height: 11em;
+  /* height: 11em; */
+  height: fit-content;
   border-top-left-radius: inherit;
   border-top-right-radius: inherit;
 }
@@ -268,7 +281,9 @@ button[type='submit'], .submitBtn {
   display: grid;
   grid-template-columns: 17em auto;
   padding: 2em 4em;
-  background-color: #efeef1;
+  /* background-color: #efeef1; */
+  background-color: var(--themeSub);
+  height: 100vh;
 }
 
 .searchContainer > .searchGrid {
@@ -296,6 +311,23 @@ select {
   text-transform: uppercase;
   color: #6e6e6e;
 }
+
+.filterTopBar {
+  padding: 2em;
+  background: white;
+  box-shadow: 0px 1px 5px -1px rgba(0,0,0,0.56);
+  display: none;
+}
+
+/* .filterTopBar .filters > div {
+  display: inline;
+  margin-right: 2em;
+}
+
+.filterTopBar .filters > div > p {
+  display: inline;
+  margin-right: 10px;
+} */
 
 .topHeader {
   display: flex;
@@ -331,9 +363,18 @@ select {
   padding: 1em 5em;
   font-size: 15px;
   color: white;
+  position: relative;
 }
 .dataInfoContainer > span {
   padding-right: 2em;
+}
+
+.dataInfoContainer svg.slider {
+  position: absolute;
+  right: 87px;
+  font-size: 23px;
+  cursor: pointer;
+  display: none;
 }
 
 
@@ -411,7 +452,6 @@ select {
   }
   .petCard > img {
     width: 18em;
-    height: 13em;
   }
 }
 
@@ -420,19 +460,45 @@ select {
     grid-template-columns: auto auto;
   }
   .petCard > img {
-    width: 24em;
-    height: 17em;
+    width: 20em;
   }
 }
 
-@media screen and (max-width: 1230px) {
+@media screen and (max-width: 1100px) {
+  .dataInfoContainer svg.slider {
+    display: inline;
+  }
+  .searchContainer .filters {
+    display: none;
+  }
   .searchContainer > .searchGrid {
     grid-template-columns: auto;
   }
-  .petCard > img {
-    width: 24em;
-    height: 17em;
+  .petCard {
+    width: 80vw;
   }
+  .petCard > img {
+    width: 100%;
+  }
+  .searchContainer {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  .searchGrid {
+    justify-content: center;
+    width: 100vw;
+  }
+}
+
+@media screen and (min-width: 1101px) {
+  .filterTopBar {
+    display: none !important;
+  }
+
+  .dataInfoContainer svg.slider {
+    display: none !important;
+  }
+
 }
 
 @media screen and (max-width: 700px) {
@@ -445,4 +511,16 @@ select {
   .purposeBtns h2 {
     display: block;
   }
+}
+
+@media screen and (max-width: 1090px) {
+  .detailsCard {
+    flex-direction: column;
+  }
+
+  .detailsCard > img, .infoContainer {
+    width: 90%;
+    margin: auto;
+  }
+
 }

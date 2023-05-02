@@ -1,40 +1,31 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart, faLocationDot, faArrowLeftLong } from '@fortawesome/free-solid-svg-icons';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { faLocationDot, faArrowLeftLong } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import { useUsers } from '../contexts/UsersDataProvider';
 import { customToast } from '../functions/customToast';
 import { toast } from 'react-toastify';
 
 const Details = () => {
-    const location = useLocation();
-    const dog = location.state ? location.state.dog : null;
     const navigate = useNavigate();
     const { user } = useAuth();
 
-    const { users } = useUsers();
-
-    const getOwner = () => users.find(u => u.id === dog.ownerId);
-
-    const [owner, setOwner] = useState(getOwner());
-
-    useEffect(() => {
-        setOwner(getOwner());
-    }, [users, dog])
+    const currentDog = JSON.parse(localStorage.getItem('currentDog'));
+    const currentDogOwner = JSON.parse(localStorage.getItem('currentDogOwner'));
 
     const openContactForm = () => {
         if(user) {
             navigate("/contactform", {
                 state: {
-                    owner: owner,
-                    dog: dog
+                    owner: currentDogOwner,
+                    dog: currentDog
                 }
             });
         } else {
             customToast(toast.error, 'Please login');
         }
     }
+    console.log(user);
     
     return (
         <>
@@ -42,49 +33,53 @@ const Details = () => {
                 <FontAwesomeIcon icon={faArrowLeftLong} /> Search page
             </div>
             <div className="detailsCard">
-                <img src={dog.pictureUrl} alt="Avatar" />
+                <img src={currentDog.pictureUrl} alt="Avatar" />
                 <div className="infoContainer">
                     <div className="info">
                         <div>
-                            <h1><b>{dog.name}</b></h1> 
-                            <p> <FontAwesomeIcon icon={faLocationDot} /> {dog.location}</p>
+                            <h1><b>{currentDog.name}</b></h1> 
+                            <p> <FontAwesomeIcon icon={faLocationDot} /> {currentDog.location}</p>
                         </div>
-                        <div>
+                        {/* <div>
                             <h1><FontAwesomeIcon icon={faHeart} fontSize={20} /></h1>
-                        </div>
+                        </div> */}
                     </div>
                     <hr />
                     <div className='dogDetails'>
                         <div>
-                            <div>{dog.age} months</div>
+                            <div>{currentDog.age} months</div>
                             <div>Age</div>
                         </div>
                         <div style={{textTransform: 'capitalize'}}>
-                            <div>{dog.gender}</div>
+                            <div>{currentDog.gender}</div>
                             <div>Gender</div>
                         </div>
                         <div>
-                            <div>{dog.weight} Kg</div>
+                            <div>{currentDog.weight} Kg</div>
                             <div>Weight</div>
                         </div>
                     </div>
                     <hr />
                     <div className="story">
-                        <h2>Story</h2>
+                        <h2 style={{fontSize: '1.6vw'}}>Story</h2>
                         <p>
-                            {dog.story}
+                            {currentDog.story}
                         </p>
                     </div>
                     <div className='contactMe'>
-                        {owner &&
+                        {currentDog &&
                         <>
-                            <img src={owner.pictureUrl} alt={owner.name} />
+                            <img src={currentDogOwner.pictureUrl} alt={currentDogOwner.name} />
                             <div className='ownerInfo'>
                                 <div>Posted By</div>
-                                <div>{owner.name}</div>
+                                <div>{currentDogOwner.name}</div>
                             </div>
                         </>}
-                        <button className='blueBtn' onClick={openContactForm}>Contact Me</button>
+                        {
+                            currentDogOwner.id !== user.uid &&
+                            <button className='blueBtn' onClick={openContactForm}>Contact Me</button>
+                        }
+                        
                     </div>
                 </div>
             </div>
