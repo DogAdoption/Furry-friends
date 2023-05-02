@@ -76,7 +76,7 @@ const Details = () => {
                             </div>
                         </>}
                         {
-                            user && currentDogOwner.id !== user.uid &&
+                            (!user || currentDogOwner.id !== user.uid) &&
                             <button className='blueBtn' onClick={openContactForm}>Contact Me</button>
                         }
                         
