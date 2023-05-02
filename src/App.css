@@ -423,29 +423,6 @@ select {
   cursor: pointer;
 }
 
-/* .dropzone p {
-  text-align: center;
-}
-
-.dropzone img {
-  max-width: 100%;
-  max-height: 100%;
-} */
-
-/* .editPicture svg {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  color: grey;
-  scale: 1.5;
-}
-
-.dropzone:hovering svg {
-  filter: blur(1px);
-} */
-/* ....pet form */
-
-
 @media screen and (max-width: 1500px) {
   .searchContainer > .searchGrid {
     grid-template-columns: auto auto auto;
