@@ -11,11 +11,7 @@ const Header = () => {
 
     const locationUrl = window.location.href;
 
-    const getCurrentLocation = () => {
-        let location =  localStorage.getItem("currentLocation");
-        if(location) return location;
-        return 'West Bengal';
-    }
+    const {currentLocation} = useDogs();
 
     return ( 
         <div className='headerContainer'>
@@ -30,7 +26,6 @@ const Header = () => {
                     </Link>
                 </div>
                 <div>
-                    {/* <FontAwesomeIcon icon={faHeart} style={{fontSize: 25, position: 'absolute', top: 26}}/> */}
                     <HandleLogin />
                 </div>
             </div>
@@ -39,7 +34,7 @@ const Header = () => {
                     locationUrl.includes('search') && <span>{currentDogCount} dogs</span>
                 }
                 <span>
-                    <FontAwesomeIcon icon={faLocationDot} /> {getCurrentLocation()}, India
+                    <FontAwesomeIcon icon={faLocationDot} /> {currentLocation}, India
                 </span>
             </div>
         </div>

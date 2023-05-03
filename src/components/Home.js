@@ -4,6 +4,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { customToast } from '../functions/customToast';
 import { toast } from 'react-toastify';
 import dogPicture from '../images/dog.jpg'
+import { useDogs } from '../contexts/DogsDataProvider';
 
 const Home = () => {
   const indianStates = [
@@ -37,14 +38,14 @@ const Home = () => {
     "West Bengal"
   ];
 
-  // const distances = [10, 25, 100, 'Anywhere'];
-
   const [state, setState] = useState(() => {
     let location = localStorage.getItem('currentLocation');
     return location ? location : indianStates[27];
   });
-  // const [distance, setDistance] = useState(100);
+
   const [adopt, setAdopt] = useState(false);
+
+  const {setCurrentLocation} = useDogs();
 
   const { user } = useAuth();
   const navigate = useNavigate();
@@ -61,6 +62,7 @@ const Home = () => {
     let currentLocation = e.target.value;
     setState(currentLocation);
     localStorage.setItem('currentLocation', currentLocation);
+    setCurrentLocation(currentLocation);
   }
   
   return (

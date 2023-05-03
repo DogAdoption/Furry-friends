@@ -9,6 +9,7 @@ const DogsDataProvider = ({ children }) => {
     const [dogs, setDogs] = useState([]);
     const dogsCollectionRef = collection(db, 'dogs');
     const [currentDogCount, setCurrentDogCount] = useState(dogs.length);
+    const [currentLocation, setCurrentLocation] = useState(() => localStorage.getItem('currentLocation'));
 
     useEffect(() => { 
         //we used onSnapshot instead of getDocs because onSnapshot enables real-time updates without refreshing the page
@@ -22,7 +23,7 @@ const DogsDataProvider = ({ children }) => {
     }, [])
     
     return (
-        <DogsContext.Provider value={{ dogs, currentDogCount, setCurrentDogCount }}>
+        <DogsContext.Provider value={{ dogs, currentDogCount, setCurrentDogCount, currentLocation, setCurrentLocation }}>
             {children}
         </DogsContext.Provider>
     )
