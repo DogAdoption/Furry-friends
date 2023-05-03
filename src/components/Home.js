@@ -58,11 +58,18 @@ const Home = () => {
     }
   }
 
+  const resetFilter = () => {
+    localStorage.setItem('filterBreed', 'any');
+    localStorage.setItem('filterAge', 'any');
+    localStorage.setItem('filterGender', 'any');
+  }
+
   const handleLocationChange = (e) => {
     let currentLocation = e.target.value;
     setState(currentLocation);
     localStorage.setItem('currentLocation', currentLocation);
     setCurrentLocation(currentLocation);
+    resetFilter();
   }
   
   return (
