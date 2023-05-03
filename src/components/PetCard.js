@@ -66,7 +66,7 @@ const PetCard = ({dog}) => {
                     {/* <FontAwesomeIcon icon={faHeart} className='heartIcon' /> */}
                     <img src={dog.pictureUrl} alt="dog" />
                     <p>{dog.name}</p>
-                    {getAge(dog.age)} <span class="dot">.</span> {dog.breed} <br />
+                    {getAge(dog.age)} <span className="dot">.</span> {dog.breed} <br />
                 </div>
             {
                 user && user.uid === dog.ownerId &&
