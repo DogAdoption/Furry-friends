@@ -9,7 +9,13 @@ const DogsDataProvider = ({ children }) => {
     const [dogs, setDogs] = useState([]);
     const dogsCollectionRef = collection(db, 'dogs');
     const [currentDogCount, setCurrentDogCount] = useState(dogs.length);
-    const [currentLocation, setCurrentLocation] = useState(() => localStorage.getItem('currentLocation'));
+    const [currentLocation, setCurrentLocation] = useState(() => {
+        let loc = localStorage.getItem('currentLocation');
+        if(!loc) {
+            loc = 'West Bengal';
+        }
+        return loc;
+    });
 
     useEffect(() => { 
         //we used onSnapshot instead of getDocs because onSnapshot enables real-time updates without refreshing the page
